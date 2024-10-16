@@ -1,6 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:window_manager/window_manager.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await windowManager.ensureInitialized();
+
+  WindowOptions windowOptions = WindowOptions(
+    size: Size(1800, 1000),
+    minimumSize: Size(800, 400),
+    // center: true,
+    // backgroundColor: Colors.transparent,
+    // skipTaskbar: false,
+    // titleBarStyle: TitleBarStyle.hidden,
+  );
+
+  windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.focus();
+  });
+
   runApp(MyApp());
 }
 
@@ -125,62 +143,57 @@ class MyApp extends StatelessWidget {
     },
   ];
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Cognative Bias',
-        theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // TRY THIS: Try running your application with "flutter run". You'll see
-          // the application has a purple toolbar. Then, without quitting the app,
-          // try changing the seedColor in the colorScheme below to Colors.green
-          // and then invoke "hot reload" (save your changes or press the "hot
-          // reload" button in a Flutter-supported IDE, or press "r" if you used
-          // the command line to start the app).
-          //
-          // Notice that the counter didn't reset back to zero; the application
-          // state is not lost during the reload. To reset the state, use hot
-          // restart instead.
-          //
-          // This works for code too, not just values: Most code changes can be
-          // tested with just a hot reload.
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+      title: 'Cognative Bias',
+      color: Colors.redAccent,
+      theme: ThemeData(
+        primarySwatch: Colors.blue, // 主色调
+        visualDensity: VisualDensity.adaptivePlatformDensity, // 视觉密度
+        primaryColor: Colors.blue[800],
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.blue[800],
+          textTheme: ButtonTextTheme.primary,
         ),
-        home: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (var keyword in keywords)
-                  KeywordCard(
-                    keyword: keyword['name'] as String,
-                    color: keyword['color'] as Color,
-                  ),
-              ],
-            ),
-            GridView.count(
-              shrinkWrap: true,
-              primary: false,
-              padding: const EdgeInsets.all(20),
-              crossAxisCount: 5,
-              children: [
-                for (var item in info)
-                  FlashCard(
-                    title: item['title']!,
-                    description: item['description']!,
-                    imageUrl: item['imageUrl']!,
-                    example: item['example']!,
-                  ),
-              ],
-            ),
-          ],
-        ));
+        useMaterial3: true,
+      ),
+      home: CardGridView(),
+    );
+    // home: CardGridView(), Column(
+    //   mainAxisAlignment: MainAxisAlignment.start,
+    //   mainAxisSize: MainAxisSize.max,
+    //   crossAxisAlignment: CrossAxisAlignment.center,
+    //   children: [
+    //     Row(
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //       children: [
+    //         for (var keyword in keywords)
+    //           KeywordCard(
+    //             keyword: keyword['name'] as String,
+    //             color: keyword['color'] as Color,
+    //           ),
+    //       ],
+    //     ),
+
+    //     // GridView.count(
+    //     //   shrinkWrap: true,
+    //     //   primary: false,
+    //     //   padding: const EdgeInsets.all(20),
+    //     //   crossAxisCount: 5,
+    //     //   children: [
+    //     //     for (var item in info)
+    //     //       BiasCard(
+    //     //         title: item['title']!,
+    //     //         description: item['description']!,
+    //     //         imageUrl: item['imageUrl']!,
+    //     //         example: item['example']!,
+    //     //       ),
+    //     //   ],
+    //     // ),
+    //   ],
+    // ));
   }
 }
 
@@ -215,47 +228,101 @@ class KeywordCard extends StatelessWidget {
   }
 }
 
-//
-class FlashCard extends StatelessWidget {
+class CardGridView extends StatelessWidget {
+  const CardGridView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      int crossAxisCount = (constraints.maxWidth / 200).floor();
+
+      double cardMinWidth = 100;
+      double cardMaxWidth = 200;
+
+      // 确保crossAxisCount不超过最大宽度
+      crossAxisCount =
+          crossAxisCount > (constraints.maxWidth / cardMaxWidth).floor()
+              ? (constraints.maxWidth / cardMaxWidth).floor()
+              : crossAxisCount;
+
+      return Expanded(
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 0,
+            mainAxisSpacing: 0,
+            childAspectRatio: 0.7, // 假设Card的宽高比为1
+          ),
+          itemCount: 50,
+          itemBuilder: (context, index) {
+            return LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              double cardWidth = constraints.maxWidth / crossAxisCount;
+              cardWidth = cardWidth.clamp(cardMinWidth, cardMaxWidth);
+              return BiasCard(
+                width: cardWidth,
+                height: cardWidth,
+                title: 'Test',
+                description: 'Test',
+                imageUrl: '',
+                example: 'Test',
+              );
+            });
+          },
+        ),
+      );
+    });
+  }
+}
+
+// Card
+class BiasCard extends StatelessWidget {
   final String title;
   final String description;
   final String imageUrl;
   final String example;
+  final double width;
+  final double height;
 
-  const FlashCard(
-      {super.key,
-      required this.title,
-      required this.description,
-      required this.imageUrl,
-      required this.example});
+  const BiasCard({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.imageUrl,
+    required this.example,
+    required this.width,
+    required this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      width: 200,
-      child: Card(
-        elevation: 5, // 阴影高度
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+    return Card(
+      // elevation: 5, // 阴影高度
+      child: Container(
+        width: width,
+        height: height,
+        color: Colors.blueGrey[100],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
-                description,
-              ),
-              // Image.network(imageUrl),
-              Text(
-                example,
-              ),
-            ],
-          ),
+            ),
+            Text(
+              description,
+            ),
+            // Image.network(imageUrl),
+            Text(
+              example,
+            ),
+          ],
         ),
       ),
     );

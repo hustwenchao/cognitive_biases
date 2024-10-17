@@ -3,7 +3,7 @@
         "title": "Fundamental Attribution Error",
         "desc": "We judge others on their personality of fundamental character, but we judge ourselves on the situation.",
         "example": "Sally is late to class; she's lazy. You're late to class; it was a bad morning.",
-        "type": [
+        "category": [
             "Social",
             "Belief"
         ]
@@ -12,7 +12,7 @@
         "title": "Self-Serving Bias",
         "desc": "Our failures are situational, but our successes are our responsibility.",
         "example": "You won that award due to hard work rather than help or luck. Meanwhile, you failed a test because you hadn't gotten enough sleep.",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Money"
@@ -22,7 +22,7 @@
         "title": "In-Group Bias",
         "desc": "We favor people who are in our in-group as opposed to an out-group.",
         "example": "Francis is in your church, so you like Francis more than Sally.",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Politics"
@@ -32,7 +32,7 @@
         "title": "Bandwagon Effect",
         "desc": "Ideas, fads, and beliefs grow as more people adopt them.",
         "example": "Sally believes fidget spinners help her children. Francis does, too",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Politics"
@@ -42,7 +42,7 @@
         "title": "Groupthink",
         "desc": "Due to a desire for conformity and harmony in the group, we make irrational decisions, often to minimize conflict.",
         "example": "Sally wants to go get ice cream. Francis wants to shop for T-shirts. You suggest getting T-shirts with pictures of ice cream on them.",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Politics"
@@ -52,7 +52,7 @@
         "title": "Halo Effect",
         "desc": "If you see a person as having a positive trait, that positive impression will spill over into their other traits.(This also works for negative traits.)",
         "example": "\"Taylor could never be mean; she's so cute!\"",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Politics"
@@ -62,7 +62,7 @@
         "title": "Moral Luck",
         "desc": "Better moral standing happens due to a positive outcome; worse moral standing happens du to a negative outcome.",
         "example": "\"X culture won X war because they were morally superior to the losers.\"",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Politics",
@@ -73,7 +73,7 @@
         "title": "False Consensus",
         "desc": "We believe more people agree with us than is actually the case.",
         "example": "\"Everyone thinks that!\"",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Politics"
@@ -83,7 +83,7 @@
         "title": "Curse of Knowledge",
         "desc": "Once we know something, we assume everyone else knows it, too.",
         "example": "Alice is a teacher and struggles to understand the perspective of her new students.",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Learning"
@@ -93,7 +93,7 @@
         "title": "Splotlight Effect",
         "desc": "We overestimate how much people are paying attention to our behavior and appearance.",
         "example": "Sally is worried everyone's going to notice how lame her ice cream T-shirt is.",
-        "type": [
+        "category": [
             "Social",
             "Memory"
         ]
@@ -102,7 +102,7 @@
         "title": "Availability Heuristic",
         "desc": "We rely on immediate examples that come to mind while making judgements.",
         "example": "When trying to decide on which store to visit, you choose the one you most recently saw an ad for.",
-        "type": [
+        "category": [
             "Memory",
             "Money",
             "Learning",
@@ -114,7 +114,7 @@
         "title": "Defensive Attribution",
         "desc": "As a witness who secretly fears being vulnerable to a serious mishap, we will blame the victim less and attacker more if we relate to the victim.",
         "example": "Sally sat too long at a green light because she was playing with her phone. She got rear-ended. Greg, who is known to text and drive got out and yelled at the person who smacked into her.",
-        "type": [
+        "category": [
             "Social",
             "Memory",
             "Politics"
@@ -124,7 +124,7 @@
         "title": "Just-World Hypothesis",
         "desc": "We tend to believe the world is just; therefore, we assume acts of injustice are desrved.",
         "example": "\"Sally's purse was stolen because she was mean to Francis about their T-shirt and had bad karma.\"",
-        "type": [
+        "category": [
             "Social",
             "Memory",
             "Belief",
@@ -135,7 +135,7 @@
         "title": "Naive Realism",
         "desc": "We believe that we observe objective reality and that other people are irerational, uninformed, or biased.",
         "example": "\"I see world as it really is  - other people are dumb.\"",
-        "type": [
+        "category": [
             "Social",
             "Memory",
             "Belief",
@@ -146,7 +146,7 @@
         "title": "Naive Cynicism",
         "desc": "We believe that we observe objective reality and that other people have a higher egocentric bias than they actually do in their intentions/actions.",
         "example": "\"The only reason this person is doing something nice is to get something out of me.\"",
-        "type": [
+        "category": [
             "Social",
             "Memory",
             "Belief",
@@ -157,7 +157,7 @@
         "title": "Forer Effect(aka Barnum Effect)",
         "desc": "We easily attribute our personalities to vague statements, even if they can apply to a wide range of people.",
         "example": "\"This horoscope is so accurate!\"",
-        "type": [
+        "category": [
             "Memory",
             "Belief"
         ]
@@ -166,7 +166,7 @@
         "title": "Dunning-Kruger Effect",
         "desc": "The less you know, the more confident you are. The more you know, the less confident you are.",
         "example": "Francis confidently assures the group that there's no kelp in ice cream. They do not work in dairy industry.",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Learning",
@@ -179,7 +179,7 @@
         "title": "Anchoring",
         "desc": "We rely heavily on the first piece of information introduced when making decisions.",
         "example": "\"That's 50% off? It must be a great deal!\"",
-        "type": [
+        "category": [
             "Memory",
             "Money",
             "Learning",
@@ -190,7 +190,7 @@
         "title": "Automation Bias",
         "desc": "We rely on automated systems, sometimes trusting too much in the automated correction of a actually correct decisions.",
         "example": "Your phone auto-corrects \"its\" to \"it's,\" so you assume it's right.",
-        "type": [
+        "category": [
             "Learning",
             "Memory",
             "Belief"
@@ -200,7 +200,7 @@
         "title": "Google Effect(aka Digital Amnesia)",
         "desc": "We tend to forget information that's easily looked up in search engines.",
         "example": "\"What was the name of that actor in that funny movie? I've looked it up like eight times... \"",
-        "type": [
+        "category": [
             "Learning",
             "Memory",
             "Belief"
@@ -210,7 +210,7 @@
         "title": "Reactance",
         "desc": "We do the opposite of what we're told, especially when we perceive threats to personal freedoms.",
         "example": "One of Alice's students refuses to do his homework, even though both she and his parents tell him to.",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Politics"
@@ -220,7 +220,7 @@
         "title": "Confirmation Bias",
         "desc": "We tend to find and remember information that confirms our perceptions.",
         "example": "You can confirm a conspiracy theory based on scant evidence while ignoring contrary evidence.",
-        "type": [
+        "category": [
             "Learning",
             "Memory",
             "Social",
@@ -231,7 +231,7 @@
         "title": "Backfire Effect",
         "desc": "Disproving evidence sometimes has the unwarranted effect of confirming our beliefs.",
         "example": "The evidence that disproves your conspiracy theory was probably faked by the goverment.",
-        "type": [
+        "category": [
             "Belief",
             "Learning",
             "Memory",
@@ -242,7 +242,18 @@
         "title": "Third-Person Effect",
         "desc": "We believe that others are more affected by mass media consumption than we ourselves are.",
         "example": "We judge an argument's strength not by how strongly it supports the conclusion that how plausible the conclusion is in our own mind.",
-        "type": [
+        "category": [
+            "Belief",
+            "Learning",
+            "Memory",
+            "Politics"
+        ]
+    },
+    {
+        "title": "Belief Bias",
+        "desc": "We judge an argument's strength not by how strongly it supports the conclusion but how plausible the conclusion is in our own mind.",
+        "example": "Sally mentions her supporting theory about your conspiracy theory, which you adopt wholeheartedly despite the fact that she has very little evidence for it.",
+        "category": [
             "Belief",
             "Learning",
             "Memory",
@@ -253,7 +264,7 @@
         "title": "Availability Cascade",
         "desc": "Tied to our need for social acceptance, collective beliefs gain more plausibility through public repetition.",
         "example": "A story about razor blades appearing in candy eventually led to many people no longer offering homemade treats on Halloween in America.",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Learning",
@@ -266,7 +277,7 @@
         "title": "Declinism",
         "desc": "We tent to romanticize the past and view the future negatively, believing that societies/institutions are by and large in decline.",
         "example": "\"In my day, kids had more respect!\"",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Belief",
@@ -277,7 +288,7 @@
         "title": "Status Quo Bias",
         "desc": "We tend to prefer things to stay the same; changes from the baseline are considered to be a loss.",
         "example": "Even though an app's terms of service invade Sally's privacy, she'd rather not switch to another app.",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Learning",
@@ -290,7 +301,7 @@
         "title": "Sunk Cost Fallacy (aka Escalation of Commitment)",
         "desc": "We invest more in things that have cost us something rather than altering our investments, even if we face negative outcomes.",
         "example": "\"In for a penny, in for a pound!\"",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Belief"
@@ -300,7 +311,7 @@
         "title": "Gambler's Fallacy",
         "desc": "We think future possibilities are affected by past events.",
         "example": "Alice has lost nine coin tosses in a row, so she's sure she'll win the next one.",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Belief"
@@ -310,7 +321,7 @@
         "title": "Zero-Risk Bias",
         "desc": "We prefer to reduce small risks to zero, even if we can reduce more risk overall with another option.",
         "example": "\"You should probably buy the warranty.\"",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Belief"
@@ -320,7 +331,7 @@
         "title": "Framing Effect",
         "desc": "We often draw different conclusions from the same information depending on how it's presented.",
         "example": "Alice hears that her favorite candidate is \"killing it\" with a 45% approval rating. Sally hears that the candidate is \"disappointing the country\" with a 45% rating. They have wildly different interpretations of the same statistic.",
-        "type": [
+        "category": [
             "Social",
             "Learning",
             "Belief",
@@ -332,7 +343,7 @@
         "title": "Stereotyping",
         "desc": "We adopt generalized beliefs that members of a group will have certain characteristics,despite not having information about the individual",
         "example": "\"That guy with the fancy mustache is a hipster. He probably has a vinyl collection.\"",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Learning",
@@ -344,7 +355,7 @@
         "title": "Outgroup Homogeneity Bias",
         "desc": "We perceive out-group members as homogeneous and our own in-groups as more diverse.",
         "example": "Alice is not a gamer, but she believes \"all gamers are the same.\"",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Learning",
@@ -357,7 +368,7 @@
         "title": "Authority Bias",
         "desc": "We trust and are more often influenced by the opinions of authority figures.",
         "example": "My teacher told me this was fine.",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Money",
@@ -368,7 +379,7 @@
         "title": "Placebo Effect",
         "desc": "If we believe a treatment will work, it often will have a small physiological effect",
         "example": "Alice was given a placebo for her pain, and her pain decrased.",
-        "type": [
+        "category": [
             "Memory",
             "Belief",
             "Money"
@@ -378,7 +389,7 @@
         "title": "Survivorship Bias",
         "desc": "We tend to focus on those things that survived a process and overlook ones that failed.",
         "example": "Greg tells Alice her purse bussiness is going to be great because a successful fashion company had the same strategy.(But 10 other failed companies had the same strategy.)",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Money",
@@ -389,7 +400,7 @@
         "title": "Tachypsychia",
         "desc": "Our perceptions of time shift depending on trauma, drug use, and physical exertion.",
         "example": "\"When the car almost hit me, time slowed down... .\"",
-        "type": [
+        "category": [
             "Memory",
             "Learning",
             "Belief"
@@ -399,7 +410,7 @@
         "title": "Law of Triviality (aka \"Bike-Shedding\")",
         "desc": "We give disproportionate weight to trivial issues, often while avoiding more complex issues.",
         "example": "Rather than figuring out how to help the homeless, a local city government spends a lot of time discussing putting in a bike path and bike sheds",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Money",
@@ -410,7 +421,7 @@
         "title": "Zeigarnik Effect",
         "desc": "We remember incomplete tasks more than completed ones.",
         "example": "Greg feels guilty for never getting anything done, but he sees all of the tasks he's checked off his task list.",
-        "type": [
+        "category": [
             "Memory",
             "Belief"
         ]
@@ -419,7 +430,7 @@
         "title": "IKEA Effect",
         "desc": "We place higher values on things we partially created ourselves.",
         "example": "\"Don't you love this pot I spent $20 on? I painted it myself!\"",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Belief"
@@ -429,7 +440,7 @@
         "title": "Ben Franklin Effect",
         "desc": "We like doing favors; we are more likely to do another favor for someone if we've already done a favor for them than if we had received a favor from that person.",
         "example": "Greg loaned Francis a pen. When Francis asked to brrow $5, Greg did it readily.",
-        "type": [
+        "category": [
             "Social",
             "Belief",
             "Money",
@@ -440,7 +451,7 @@
         "title": "Bystander Effect",
         "desc": "The more other people are around, the less likely we are to help a victim.",
         "example": "In a crowd of students, no one called 911 when someone got hurt in a fight.",
-        "type": [
+        "category": [
             "Social",
             "Belief"
         ]
@@ -449,7 +460,7 @@
         "title": "Suggestibility",
         "desc": "We, especially children, sometimes mistake ideas suggessted by a questioner for memories.",
         "example": "\"So did you fall off the couch before or after your mom hit you?\"",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Learning",
@@ -460,7 +471,7 @@
         "title": "False Memory",
         "desc": "We mistake imagination for real memories.",
         "example": "Greg is certain Sally said a really funny joke about pineapples, when that joke actually came from a TV show.",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Belief"
@@ -470,7 +481,7 @@
         "title": "Cryptomnesia",
         "desc": "We mistake real memories from imagination.",
         "example": "Greg thinks he visited a graveyard, but he's pretty sure he just had a spooky dream.",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Belief"
@@ -480,7 +491,7 @@
         "title": "Clustering Illusion",
         "desc": "We find patterns and \"clusters\" in random data.",
         "example": "\"That could looks like your cat, Alice!\"",
-        "type": [
+        "category": [
             "Memory",
             "Belief"
         ]
@@ -489,7 +500,7 @@
         "title": "Pessimism Bias",
         "desc": "We sometimes overestimate that likehood of bad outcomes.",
         "example": "\"Nothing will ever get better.\"",
-        "type": [
+        "category": [
             "Memory",
             "Belief"
         ]
@@ -498,7 +509,7 @@
         "title": "Optimism Bias",
         "desc": "We sometimes are over-optimistic about good outcomes.",
         "example": "\"It's going to turn out great!\"",
-        "type": [
+        "category": [
             "Memory",
             "Belief"
         ]
@@ -507,7 +518,7 @@
         "title": "Blind Spot Bias",
         "desc": "We don't think we have biases, and we see it others more than overselves.",
         "example": "\"I'm not biased; you're biased.\"",
-        "type": [
+        "category": [
             "Memory",
             "Social",
             "Learning",

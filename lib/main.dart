@@ -1,21 +1,18 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:window_manager/window_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
 
+  // 设置桌面平台的窗口属性
   WindowOptions windowOptions = WindowOptions(
     size: Size(1800, 1000),
     minimumSize: Size(800, 400),
-    // center: true,
-    // backgroundColor: Colors.transparent,
-    // skipTaskbar: false,
-    // titleBarStyle: TitleBarStyle.hidden,
   );
 
   windowManager.waitUntilReadyToShow(windowOptions, () async {
@@ -27,125 +24,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final List<Map<String, Object>> keywords = [
-    {
-      "name": "Memory",
-      "color": Colors.red,
-    },
-    {
-      "name": "Social",
-      "color": Colors.blue,
-    },
-    {
-      "name": "Learning",
-      "color": Colors.green,
-    },
-    {
-      "name": "Belief",
-      "color": Colors.yellow,
-    },
-    {
-      "name": "Money",
-      "color": Colors.purple,
-    },
-    {
-      "name": "Politics",
-      "color": Colors.orange,
-    },
-  ];
-
-  final List<Map<String, String>> info = [
-    {
-      "title": "Fundamental Attribution Error",
-      "description":
-          "We judge others on their personality or fundamental character, while we judge ourselves on the situation.",
-      "imageUrl": "",
-      "example":
-          "Example: When someone cuts you off in traffic, you think they are a bad driver. When you cut someone off, you think it was because you were running late."
-    },
-    {
-      "title": "Self-Serving Bias",
-      "description":
-          "Our failures are situational, but our successes are our responsibility.",
-      "imageUrl": "",
-      "example":
-          "Example: When you fail a test, you blame the teacher. When you pass a test, you take all the credit."
-    },
-    {
-      "title": "In-Group Favoritism",
-      "description":
-          "We favor people who are in our in-group as opposed to those who are in our out-group.",
-      "imageUrl": "",
-      "example":
-          "Example: You are more likely to hire someone who went to the same college as you than someone who went to a different college."
-    },
-    {
-      "title": "Confirmation Bias",
-      "description":
-          "We seek out information that confirms our beliefs and ignore information that contradicts them.",
-      "imageUrl": "",
-      "example":
-          "Example: You only watch news channels that align with your political beliefs."
-    },
-    {
-      "title": "Halo Effect",
-      "description":
-          "We assume that people who are good at one thing are good at everything.",
-      "imageUrl": "",
-      "example":
-          "Example: You think someone who is attractive is also smart and kind."
-    },
-    {
-      "title": "Horns Effect",
-      "description":
-          "We assume that people who are bad at one thing are bad at everything.",
-      "imageUrl": "",
-      "example":
-          "Example: You think someone who is unattractive is also dumb and mean."
-    },
-    {
-      "title": "Anchoring Bias",
-      "description":
-          "We rely too heavily on the first piece of information we receive.",
-      "imageUrl": "",
-      "example":
-          "Example: You see a shirt that is \$100, but it is on sale for \$50. You think it is a great deal, even though it is still expensive."
-    },
-    {
-      "title": "Availability Heuristic",
-      "description":
-          "We overestimate the importance of information that is easy to remember.",
-      "imageUrl": "",
-      "example":
-          "Example: You think shark attacks are common because you see them on the news all the time, even though they are rare."
-    },
-    {
-      "title": "Bandwagon Effect",
-      "description":
-          "We do or believe things because many other people do or believe the same.",
-      "imageUrl": "",
-      "example":
-          "Example: You buy a product because it is popular, even though you don't know anything about it."
-    },
-    {
-      "title": "Dunning-Kruger Effect",
-      "description":
-          "We overestimate our abilities because we lack the knowledge to know our limitations.",
-      "imageUrl": "",
-      "example":
-          "Example: You think you are a great driver because you have never been in an accident, even though you have been in many near misses."
-    },
-    {
-      "title": "Sunk Cost Fallacy",
-      "description":
-          "We continue to invest in something because we have already invested in",
-      "imageUrl": "",
-      "example":
-          "Example: You think you are a great driver because you have never been in an accident, even though you have been in many near misses."
-    },
-  ];
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -161,43 +40,34 @@ class MyApp extends StatelessWidget {
           buttonColor: Colors.blue[800],
           textTheme: ButtonTextTheme.primary,
         ),
+        textTheme: TextTheme(
+          headlineLarge: GoogleFonts.notoSans(
+              fontSize: 96, fontWeight: FontWeight.w300, letterSpacing: -1.5),
+          displayLarge: GoogleFonts.roboto(fontSize: 34),
+          displayMedium: GoogleFonts.roboto(fontSize: 24),
+          displaySmall: GoogleFonts.roboto(fontSize: 20),
+          titleLarge: GoogleFonts.roboto(
+              fontSize: 18, fontWeight: FontWeight.w800, letterSpacing: 0.5),
+          bodySmall: GoogleFonts.roboto(fontSize: 14),
+        ),
         useMaterial3: true,
       ),
-      home: CardGridView(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Row(
+            children: [
+              TitleLabelMark(color: Colors.red, label: "Memory"),
+              TitleLabelMark(color: Colors.blue, label: "Social"),
+              TitleLabelMark(color: Colors.green, label: "Learning"),
+              TitleLabelMark(color: Colors.orange, label: "Belief"),
+              TitleLabelMark(color: Colors.purple, label: "Money"),
+              TitleLabelMark(color: Colors.pink, label: "Politics"),
+            ],
+          ),
+        ),
+        body: CardGridView(),
+      ),
     );
-    // home: CardGridView(), Column(
-    //   mainAxisAlignment: MainAxisAlignment.start,
-    //   mainAxisSize: MainAxisSize.max,
-    //   crossAxisAlignment: CrossAxisAlignment.center,
-    //   children: [
-    //     Row(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: [
-    //         for (var keyword in keywords)
-    //           KeywordCard(
-    //             keyword: keyword['name'] as String,
-    //             color: keyword['color'] as Color,
-    //           ),
-    //       ],
-    //     ),
-
-    //     // GridView.count(
-    //     //   shrinkWrap: true,
-    //     //   primary: false,
-    //     //   padding: const EdgeInsets.all(20),
-    //     //   crossAxisCount: 5,
-    //     //   children: [
-    //     //     for (var item in info)
-    //     //       BiasCard(
-    //     //         title: item['title']!,
-    //     //         description: item['description']!,
-    //     //         imageUrl: item['imageUrl']!,
-    //     //         example: item['example']!,
-    //     //       ),
-    //     //   ],
-    //     // ),
-    //   ],
-    // ));
   }
 }
 
@@ -267,8 +137,8 @@ class CardGridState extends State<CardGridView> {
         builder: (BuildContext context, BoxConstraints constraints) {
       int crossAxisCount = (constraints.maxWidth / 200).floor();
 
-      double cardMinWidth = 100;
-      double cardMaxWidth = 200;
+      double cardMinWidth = 200;
+      double cardMaxWidth = 250;
 
       // 确保crossAxisCount不超过最大宽度
       crossAxisCount =
@@ -276,83 +146,34 @@ class CardGridState extends State<CardGridView> {
               ? (constraints.maxWidth / cardMaxWidth).floor()
               : crossAxisCount;
 
-      return Expanded(
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            crossAxisSpacing: 0,
-            mainAxisSpacing: 0,
-            childAspectRatio: 0.7, // 假设Card的宽高比为1
-          ),
-          itemCount: _items.length,
-          itemBuilder: (context, index) {
-            return LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-              double cardWidth = constraints.maxWidth / crossAxisCount;
-              cardWidth = cardWidth.clamp(cardMinWidth, cardMaxWidth);
-              return BiasCard(
-                width: cardWidth,
-                height: cardWidth,
-                title: _items[index]['title'] as String,
-                description: _items[index]['desc'] as String,
-                imageUrl: '',
-                example: _items[index]['example'] as String,
-              );
-            });
-          },
+      return GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          childAspectRatio: 0.7, // 假设Card的宽高比为1
         ),
+        itemCount: _items.length,
+        itemBuilder: (context, index) {
+          return LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+            double cardWidth = constraints.maxWidth / crossAxisCount;
+            cardWidth = cardWidth.clamp(cardMinWidth, cardMaxWidth);
+            return BiasCard(
+              width: cardWidth,
+              height: cardWidth,
+              title: _items[index]['title'] as String,
+              description: _items[index]['desc'] as String,
+              imageUrl: '',
+              example: _items[index]['example'] as String,
+              category: _items[index]['category'] as List,
+            );
+          });
+        },
       );
     });
   }
 }
-
-// class CardGridView extends StatelessWidget {
-//   const CardGridView({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return LayoutBuilder(
-//         builder: (BuildContext context, BoxConstraints constraints) {
-//       int crossAxisCount = (constraints.maxWidth / 200).floor();
-
-//       double cardMinWidth = 100;
-//       double cardMaxWidth = 200;
-
-//       // 确保crossAxisCount不超过最大宽度
-//       crossAxisCount =
-//           crossAxisCount > (constraints.maxWidth / cardMaxWidth).floor()
-//               ? (constraints.maxWidth / cardMaxWidth).floor()
-//               : crossAxisCount;
-
-//       return Expanded(
-//         child: GridView.builder(
-//           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//             crossAxisCount: crossAxisCount,
-//             crossAxisSpacing: 0,
-//             mainAxisSpacing: 0,
-//             childAspectRatio: 0.7, // 假设Card的宽高比为1
-//           ),
-//           itemCount: 50,
-//           itemBuilder: (context, index) {
-//             return LayoutBuilder(
-//                 builder: (BuildContext context, BoxConstraints constraints) {
-//               double cardWidth = constraints.maxWidth / crossAxisCount;
-//               cardWidth = cardWidth.clamp(cardMinWidth, cardMaxWidth);
-//               return BiasCard(
-//                 width: cardWidth,
-//                 height: cardWidth,
-//                 title: 'Test',
-//                 description: 'Test',
-//                 imageUrl: '',
-//                 example: 'Test',
-//               );
-//             });
-//           },
-//         ),
-//       );
-//     });
-//   }
-// }
 
 // Card
 class BiasCard extends StatelessWidget {
@@ -362,6 +183,7 @@ class BiasCard extends StatelessWidget {
   final String example;
   final double width;
   final double height;
+  final List category;
 
   const BiasCard({
     super.key,
@@ -371,38 +193,144 @@ class BiasCard extends StatelessWidget {
     required this.example,
     required this.width,
     required this.height,
+    required this.category,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      // elevation: 5, // 阴影高度
-      child: Container(
-        width: width,
-        height: height,
-        color: Colors.blueGrey[100],
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+    return Container(
+      padding: EdgeInsets.all(8),
+      height: height,
+      width: width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (String item in category)
+                LabelMark(
+                  label: item,
                 ),
+              SizedBox(
+                width: 20,
               ),
+            ],
+          ),
+          Expanded(
+              child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: Offset(0, 3),
+                ),
+              ],
             ),
-            Text(
-              description,
+            width: double.infinity,
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Text(
+                  description,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                // Image.network(imageUrl),
+                SizedBox(height: 20),
+                Text(
+                  example,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
             ),
-            // Image.network(imageUrl),
-            Text(
-              example,
-            ),
-          ],
+          )),
+        ],
+      ),
+    );
+  }
+}
+
+class TitleLabelMark extends StatelessWidget {
+  final Color color;
+  final String label;
+
+  const TitleLabelMark({
+    super.key,
+    required this.color,
+    required this.label,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(10),
+          bottomRight: Radius.circular(10),
         ),
       ),
+      child: Center(
+        child: Text(
+          label,
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+}
+
+class LabelMark extends StatelessWidget {
+  final String label;
+
+  const LabelMark({super.key, required this.label});
+
+  _getLabelColor(String label) {
+    switch (label) {
+      case 'Memory':
+        return Colors.red;
+      case 'Social':
+        return Colors.blue;
+      case 'Learning':
+        return Colors.green;
+      case 'Belief':
+        return Colors.orange;
+      case 'Money':
+        return Colors.purple;
+      case 'Politics':
+        return Colors.pink;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: _getLabelColor(label),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
+        ),
+      ),
+      width: 25,
+      height: 20,
     );
   }
 }

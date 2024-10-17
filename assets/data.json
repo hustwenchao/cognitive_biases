@@ -385,5 +385,133 @@
             "Politics"
         ]
     },
-    {}
+    {
+        "title": "Tachypsychia",
+        "desc": "Our perceptions of time shift depending on trauma, drug use, and physical exertion.",
+        "example": "\"When the car almost hit me, time slowed down... .\"",
+        "type": [
+            "Memory",
+            "Learning",
+            "Belief"
+        ]
+    },
+    {
+        "title": "Law of Triviality (aka \"Bike-Shedding\")",
+        "desc": "We give disproportionate weight to trivial issues, often while avoiding more complex issues.",
+        "example": "Rather than figuring out how to help the homeless, a local city government spends a lot of time discussing putting in a bike path and bike sheds",
+        "type": [
+            "Memory",
+            "Social",
+            "Money",
+            "Politics"
+        ]
+    },
+    {
+        "title": "Zeigarnik Effect",
+        "desc": "We remember incomplete tasks more than completed ones.",
+        "example": "Greg feels guilty for never getting anything done, but he sees all of the tasks he's checked off his task list.",
+        "type": [
+            "Memory",
+            "Belief"
+        ]
+    },
+    {
+        "title": "IKEA Effect",
+        "desc": "We place higher values on things we partially created ourselves.",
+        "example": "\"Don't you love this pot I spent $20 on? I painted it myself!\"",
+        "type": [
+            "Memory",
+            "Social",
+            "Belief"
+        ]
+    },
+    {
+        "title": "Ben Franklin Effect",
+        "desc": "We like doing favors; we are more likely to do another favor for someone if we've already done a favor for them than if we had received a favor from that person.",
+        "example": "Greg loaned Francis a pen. When Francis asked to brrow $5, Greg did it readily.",
+        "type": [
+            "Social",
+            "Belief",
+            "Money",
+            "Politics"
+        ]
+    },
+    {
+        "title": "Bystander Effect",
+        "desc": "The more other people are around, the less likely we are to help a victim.",
+        "example": "In a crowd of students, no one called 911 when someone got hurt in a fight.",
+        "type": [
+            "Social",
+            "Belief"
+        ]
+    },
+    {
+        "title": "Suggestibility",
+        "desc": "We, especially children, sometimes mistake ideas suggessted by a questioner for memories.",
+        "example": "\"So did you fall off the couch before or after your mom hit you?\"",
+        "type": [
+            "Memory",
+            "Social",
+            "Learning",
+            "Belief"
+        ]
+    },
+    {
+        "title": "False Memory",
+        "desc": "We mistake imagination for real memories.",
+        "example": "Greg is certain Sally said a really funny joke about pineapples, when that joke actually came from a TV show.",
+        "type": [
+            "Memory",
+            "Social",
+            "Belief"
+        ]
+    },
+    {
+        "title": "Cryptomnesia",
+        "desc": "We mistake real memories from imagination.",
+        "example": "Greg thinks he visited a graveyard, but he's pretty sure he just had a spooky dream.",
+        "type": [
+            "Memory",
+            "Social",
+            "Belief"
+        ]
+    },
+    {
+        "title": "Clustering Illusion",
+        "desc": "We find patterns and \"clusters\" in random data.",
+        "example": "\"That could looks like your cat, Alice!\"",
+        "type": [
+            "Memory",
+            "Belief"
+        ]
+    },
+    {
+        "title": "Pessimism Bias",
+        "desc": "We sometimes overestimate that likehood of bad outcomes.",
+        "example": "\"Nothing will ever get better.\"",
+        "type": [
+            "Memory",
+            "Belief"
+        ]
+    },
+    {
+        "title": "Optimism Bias",
+        "desc": "We sometimes are over-optimistic about good outcomes.",
+        "example": "\"It's going to turn out great!\"",
+        "type": [
+            "Memory",
+            "Belief"
+        ]
+    },
+    {
+        "title": "Blind Spot Bias",
+        "desc": "We don't think we have biases, and we see it others more than overselves.",
+        "example": "\"I'm not biased; you're biased.\"",
+        "type": [
+            "Memory",
+            "Social",
+            "Learning",
+            "Belief"
+        ]
+    }
 ]

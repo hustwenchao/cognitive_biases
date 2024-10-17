@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:window_manager/window_manager.dart';
 
 void main() async {
@@ -228,8 +232,34 @@ class KeywordCard extends StatelessWidget {
   }
 }
 
-class CardGridView extends StatelessWidget {
+class CardGridView extends StatefulWidget {
   const CardGridView({super.key});
+
+  @override
+  CardGridState createState() => CardGridState();
+}
+
+class CardGridState extends State<CardGridView> {
+  List<dynamic> _items = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadItems();
+  }
+
+  Future<void> _loadItems() async {
+    try {
+      // 使用rootBundle加载json文件
+      final String jsonString = await rootBundle.loadString("assets/data.json");
+      final List<dynamic> items = json.decode(jsonString);
+      setState(() {
+        _items = items;
+      });
+    } catch (e) {
+      print('Failed to load items: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -254,7 +284,7 @@ class CardGridView extends StatelessWidget {
             mainAxisSpacing: 0,
             childAspectRatio: 0.7, // 假设Card的宽高比为1
           ),
-          itemCount: 50,
+          itemCount: _items.length,
           itemBuilder: (context, index) {
             return LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
@@ -263,10 +293,10 @@ class CardGridView extends StatelessWidget {
               return BiasCard(
                 width: cardWidth,
                 height: cardWidth,
-                title: 'Test',
-                description: 'Test',
+                title: _items[index]['title'] as String,
+                description: _items[index]['desc'] as String,
                 imageUrl: '',
-                example: 'Test',
+                example: _items[index]['example'] as String,
               );
             });
           },
@@ -275,6 +305,54 @@ class CardGridView extends StatelessWidget {
     });
   }
 }
+
+// class CardGridView extends StatelessWidget {
+//   const CardGridView({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return LayoutBuilder(
+//         builder: (BuildContext context, BoxConstraints constraints) {
+//       int crossAxisCount = (constraints.maxWidth / 200).floor();
+
+//       double cardMinWidth = 100;
+//       double cardMaxWidth = 200;
+
+//       // 确保crossAxisCount不超过最大宽度
+//       crossAxisCount =
+//           crossAxisCount > (constraints.maxWidth / cardMaxWidth).floor()
+//               ? (constraints.maxWidth / cardMaxWidth).floor()
+//               : crossAxisCount;
+
+//       return Expanded(
+//         child: GridView.builder(
+//           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//             crossAxisCount: crossAxisCount,
+//             crossAxisSpacing: 0,
+//             mainAxisSpacing: 0,
+//             childAspectRatio: 0.7, // 假设Card的宽高比为1
+//           ),
+//           itemCount: 50,
+//           itemBuilder: (context, index) {
+//             return LayoutBuilder(
+//                 builder: (BuildContext context, BoxConstraints constraints) {
+//               double cardWidth = constraints.maxWidth / crossAxisCount;
+//               cardWidth = cardWidth.clamp(cardMinWidth, cardMaxWidth);
+//               return BiasCard(
+//                 width: cardWidth,
+//                 height: cardWidth,
+//                 title: 'Test',
+//                 description: 'Test',
+//                 imageUrl: '',
+//                 example: 'Test',
+//               );
+//             });
+//           },
+//         ),
+//       );
+//     });
+//   }
+// }
 
 // Card
 class BiasCard extends StatelessWidget {

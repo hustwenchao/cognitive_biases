@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cognative Bias',
+      title: 'Cognitive Bias',
       color: Colors.redAccent,
       theme: ThemeData(
         primarySwatch: Colors.blue, // 主色调

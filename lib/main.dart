@@ -4,6 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:window_manager/window_manager.dart';
+import 'package:provider/provider.dart';
+
+class MyModel with ChangeNotifier {
+  final List<String> _selectedCategories = [];
+
+  List<String> get selectedCategories => _selectedCategories;
+
+  void addCategory(String category) {
+    _selectedCategories.add(category);
+    notifyListeners();
+  }
+
+  void removeCategory(String category) {
+    _selectedCategories.remove(category);
+    notifyListeners();
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,11 +37,26 @@ void main() async {
     await windowManager.focus();
   });
 
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => MyModel(),
+      child: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,18 +88,59 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Row(
             children: [
-              TitleLabelMark(color: Colors.red, label: "Memory"),
-              TitleLabelMark(color: Colors.blue, label: "Social"),
-              TitleLabelMark(color: Colors.green, label: "Learning"),
-              TitleLabelMark(color: Colors.orange, label: "Belief"),
-              TitleLabelMark(color: Colors.purple, label: "Money"),
-              TitleLabelMark(color: Colors.pink, label: "Politics"),
+              TitleLabelMark(
+                color: Colors.red,
+                label: "Memory",
+                onTap: (bool add) => _filterCards("Memory", add),
+                isSelected: false,
+              ),
+              TitleLabelMark(
+                color: Colors.blue,
+                label: "Social",
+                onTap: (bool add) => _filterCards("Social", add),
+                isSelected: false,
+              ),
+              TitleLabelMark(
+                color: Colors.green,
+                label: "Learning",
+                onTap: (bool add) => _filterCards("Learning", add),
+                isSelected: false,
+              ),
+              TitleLabelMark(
+                color: Colors.orange,
+                label: "Belief",
+                onTap: (bool add) => _filterCards("Belief", add),
+                isSelected: false,
+              ),
+              TitleLabelMark(
+                color: Colors.purple,
+                label: "Money",
+                onTap: (bool add) => _filterCards("Money", add),
+                isSelected: false,
+              ),
+              TitleLabelMark(
+                color: Colors.pink,
+                label: "Politics",
+                onTap: (bool add) => _filterCards("Politics", add),
+                isSelected: false,
+              ),
             ],
           ),
         ),
         body: CardGridView(),
       ),
     );
+  }
+
+  _filterCards(String s, bool isAdd) {
+    // 修改 Provider 中的数据
+    if (isAdd) {
+      Provider.of<MyModel>(context, listen: false).addCategory(s);
+    } else {
+      Provider.of<MyModel>(context, listen: false).removeCategory(s);
+    }
+    print(
+        "category length ${Provider.of<MyModel>(context, listen: false).selectedCategories.length}");
   }
 }
 
@@ -110,6 +183,8 @@ class CardGridView extends StatefulWidget {
 }
 
 class CardGridState extends State<CardGridView> {
+  List<dynamic> sourceItems = [];
+
   List<dynamic> _items = [];
 
   @override
@@ -122,10 +197,8 @@ class CardGridState extends State<CardGridView> {
     try {
       // 使用rootBundle加载json文件
       final String jsonString = await rootBundle.loadString("assets/data.json");
-      final List<dynamic> items = json.decode(jsonString);
-      setState(() {
-        _items = items;
-      });
+      sourceItems = json.decode(jsonString);
+      _items = sourceItems;
     } catch (e) {
       print('Failed to load items: $e');
     }
@@ -133,44 +206,56 @@ class CardGridState extends State<CardGridView> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      int crossAxisCount = (constraints.maxWidth / 200).floor();
-
-      double cardMinWidth = 200;
-      double cardMaxWidth = 250;
-
-      // 确保crossAxisCount不超过最大宽度
-      crossAxisCount =
-          crossAxisCount > (constraints.maxWidth / cardMaxWidth).floor()
-              ? (constraints.maxWidth / cardMaxWidth).floor()
-              : crossAxisCount;
-
-      return GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio: 0.7, // 假设Card的宽高比为1
-        ),
-        itemCount: _items.length,
-        itemBuilder: (context, index) {
-          return LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-            double cardWidth = constraints.maxWidth / crossAxisCount;
-            cardWidth = cardWidth.clamp(cardMinWidth, cardMaxWidth);
-            return BiasCard(
-              width: cardWidth,
-              height: cardWidth,
-              title: _items[index]['title'] as String,
-              description: _items[index]['desc'] as String,
-              imageUrl: '',
-              example: _items[index]['example'] as String,
-              category: _items[index]['category'] as List,
-            );
+    return Consumer<MyModel>(builder: (context, model, child) {
+      _items = sourceItems.where((item) {
+        if (model.selectedCategories.isEmpty) {
+          return true;
+        } else {
+          return model.selectedCategories.every((element) {
+            return item['category'].contains(element);
           });
-        },
-      );
+        }
+      }).toList();
+
+      return LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+        int crossAxisCount = (constraints.maxWidth / 200).floor();
+
+        double cardMinWidth = 200;
+        double cardMaxWidth = 250;
+
+        // 确保crossAxisCount不超过最大宽度
+        crossAxisCount =
+            crossAxisCount > (constraints.maxWidth / cardMaxWidth).floor()
+                ? (constraints.maxWidth / cardMaxWidth).floor()
+                : crossAxisCount;
+
+        return GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 0.7, // 假设Card的宽高比为1
+          ),
+          itemCount: _items.length,
+          itemBuilder: (context, index) {
+            return LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              double cardWidth = constraints.maxWidth / crossAxisCount;
+              cardWidth = cardWidth.clamp(cardMinWidth, cardMaxWidth);
+              return BiasCard(
+                width: cardWidth,
+                height: cardWidth,
+                title: _items[index]['title'] as String,
+                description: _items[index]['desc'] as String,
+                imageUrl: '',
+                example: _items[index]['example'] as String,
+                category: _items[index]['category'] as List,
+              );
+            });
+          },
+        );
+      });
     });
   }
 }
@@ -264,31 +349,58 @@ class BiasCard extends StatelessWidget {
   }
 }
 
-class TitleLabelMark extends StatelessWidget {
+class TitleLabelMark extends StatefulWidget {
   final Color color;
   final String label;
+  final Function(bool add) onTap;
+  final bool isSelected;
 
   const TitleLabelMark({
     super.key,
     required this.color,
     required this.label,
+    required this.onTap,
+    required this.isSelected,
   });
 
   @override
+  State<TitleLabelMark> createState() => _TitleLabelMarkState();
+}
+
+class _TitleLabelMarkState extends State<TitleLabelMark> {
+  late bool isSelected;
+
+  @override
+  void initState() {
+    super.initState();
+    isSelected = widget.isSelected;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(10),
-          bottomRight: Radius.circular(10),
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isSelected = !isSelected;
+        });
+        widget.onTap(isSelected);
+      },
+      child: Container(
+        width: 100,
+        decoration: BoxDecoration(
+          color: isSelected
+              ? Color.lerp(widget.color, Colors.black, 0.5)
+              : widget.color,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10),
+          ),
         ),
-      ),
-      child: Center(
-        child: Text(
-          label,
-          style: TextStyle(color: Colors.white),
+        child: Center(
+          child: Text(
+            widget.label,
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ),
     );

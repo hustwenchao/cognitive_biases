@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,6 +27,8 @@ class MyModel with ChangeNotifier {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await EasyLocalization.ensureInitialized();
   await windowManager.ensureInitialized();
 
   // 设置桌面平台的窗口属性
@@ -40,30 +43,108 @@ void main() async {
   });
 
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => MyModel(),
-      child: MyApp(),
+    EasyLocalization(
+      supportedLocales: [Locale('en', 'US'), Locale('zh', 'CN')],
+      path: 'assets/translations',
+      fallbackLocale: Locale('zh', 'CN'),
+      useFallbackTranslations: true,
+      child: ChangeNotifierProvider(
+        create: (context) => MyModel(),
+        child: TestApp(),
+      ),
     ),
   );
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class TestApp extends StatelessWidget {
+  const TestApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cognitive Bias',
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      home: TestHomePage(),
+    );
+  }
+}
+
+class TestHomePage extends StatelessWidget {
+  const TestHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    context.setLocale(Locale('zh', 'CN'));
+    windowManager.setTitle(context.tr('app_title'));
+
+    filterCards(String s, bool add) {
+      final model = Provider.of<MyModel>(context, listen: false);
+      if (add) {
+        model.addCategory(s);
+      } else {
+        model.removeCategory(s);
+      }
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          children: [
+            TitleLabelMark(
+              color: Colors.red,
+              label: "Memory",
+              onTap: (bool add) => filterCards("Memory", add),
+              isSelected: false,
+            ),
+            TitleLabelMark(
+              color: Colors.blue,
+              label: "Social",
+              onTap: (bool add) => filterCards("Social", add),
+              isSelected: false,
+            ),
+            TitleLabelMark(
+              color: Colors.green,
+              label: "Learning",
+              onTap: (bool add) => filterCards("Learning", add),
+              isSelected: false,
+            ),
+            TitleLabelMark(
+              color: Colors.orange,
+              label: "Belief",
+              onTap: (bool add) => filterCards("Belief", add),
+              isSelected: false,
+            ),
+            TitleLabelMark(
+              color: Colors.purple,
+              label: "Money",
+              onTap: (bool add) => filterCards("Money", add),
+              isSelected: false,
+            ),
+            TitleLabelMark(
+              color: Colors.pink,
+              label: "Politics",
+              onTap: (bool add) => filterCards("Politics", add),
+              isSelected: false,
+            ),
+          ],
+        ),
+      ),
+      body: Container(padding: EdgeInsets.all(8), child: CardGridView()),
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      title: 'Flutter Demo',
       color: Colors.redAccent,
       theme: ThemeData(
         primarySwatch: Colors.blue, // 主色调
@@ -86,62 +167,8 @@ class _MyAppState extends State<MyApp> {
         ),
         useMaterial3: true,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Row(
-            children: [
-              TitleLabelMark(
-                color: Colors.red,
-                label: "Memory",
-                onTap: (bool add) => _filterCards("Memory", add),
-                isSelected: false,
-              ),
-              TitleLabelMark(
-                color: Colors.blue,
-                label: "Social",
-                onTap: (bool add) => _filterCards("Social", add),
-                isSelected: false,
-              ),
-              TitleLabelMark(
-                color: Colors.green,
-                label: "Learning",
-                onTap: (bool add) => _filterCards("Learning", add),
-                isSelected: false,
-              ),
-              TitleLabelMark(
-                color: Colors.orange,
-                label: "Belief",
-                onTap: (bool add) => _filterCards("Belief", add),
-                isSelected: false,
-              ),
-              TitleLabelMark(
-                color: Colors.purple,
-                label: "Money",
-                onTap: (bool add) => _filterCards("Money", add),
-                isSelected: false,
-              ),
-              TitleLabelMark(
-                color: Colors.pink,
-                label: "Politics",
-                onTap: (bool add) => _filterCards("Politics", add),
-                isSelected: false,
-              ),
-            ],
-          ),
-        ),
-        body: CardGridView(),
-      ),
+      home: TestHomePage(),
     );
-  }
-
-  _filterCards(String s, bool isAdd) {
-    // 修改 Provider 中的数据
-    if (isAdd) {
-      Provider.of<MyModel>(context, listen: false).addCategory(s);
-    } else {
-      Provider.of<MyModel>(context, listen: false).removeCategory(s);
-    }
-    logger.i("test");
   }
 }
 

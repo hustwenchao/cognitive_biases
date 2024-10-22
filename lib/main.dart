@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:provider/provider.dart';
 
+import 'logger.dart' show logger;
+
 class MyModel with ChangeNotifier {
   final List<String> _selectedCategories = [];
 
@@ -139,8 +141,7 @@ class _MyAppState extends State<MyApp> {
     } else {
       Provider.of<MyModel>(context, listen: false).removeCategory(s);
     }
-    print(
-        "category length ${Provider.of<MyModel>(context, listen: false).selectedCategories.length}");
+    logger.i("test");
   }
 }
 
@@ -200,7 +201,7 @@ class CardGridState extends State<CardGridView> {
       sourceItems = json.decode(jsonString);
       _items = sourceItems;
     } catch (e) {
-      print('Failed to load items: $e');
+      logger.f('Failed to load items: $e');
     }
   }
 

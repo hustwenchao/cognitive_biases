@@ -35,6 +35,7 @@ dependencies:
       url: https://github.com/leanflutter/window_manager.git
       ref: main
   provider: ^6.0.0  # 确保使用最新版本
+  logger: ^2.4.0
       
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

@@ -1,3 +1,11 @@
 {
-    "app_title": "Cognative Bias"
+    "app_title": "Cognitive Bias",
+    "cognitive_bias_type":{
+        "Memory":"Memory",
+        "Social":"Social",
+        "Learning":"Learning",
+        "Belief":"Belief",
+        "Money":"Money",
+        "Politics":"Politics"
+    } 
 }

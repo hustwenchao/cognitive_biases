@@ -93,37 +93,37 @@ class TestHomePage extends StatelessWidget {
           children: [
             TitleLabelMark(
               color: Colors.red,
-              label: "Memory",
+              label: context.tr("cognitive_bias_type.Memory"),
               onTap: (bool add) => filterCards("Memory", add),
               isSelected: false,
             ),
             TitleLabelMark(
               color: Colors.blue,
-              label: "Social",
+              label: context.tr("cognitive_bias_type.Social"),
               onTap: (bool add) => filterCards("Social", add),
               isSelected: false,
             ),
             TitleLabelMark(
               color: Colors.green,
-              label: "Learning",
+              label: context.tr("cognitive_bias_type.Learning"),
               onTap: (bool add) => filterCards("Learning", add),
               isSelected: false,
             ),
             TitleLabelMark(
               color: Colors.orange,
-              label: "Belief",
+              label: context.tr("cognitive_bias_type.Belief"),
               onTap: (bool add) => filterCards("Belief", add),
               isSelected: false,
             ),
             TitleLabelMark(
               color: Colors.purple,
-              label: "Money",
+              label: context.tr("cognitive_bias_type.Money"),
               onTap: (bool add) => filterCards("Money", add),
               isSelected: false,
             ),
             TitleLabelMark(
               color: Colors.pink,
-              label: "Politics",
+              label: context.tr("cognitive_bias_type.Politics"),
               onTap: (bool add) => filterCards("Politics", add),
               isSelected: false,
             ),

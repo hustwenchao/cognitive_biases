@@ -1,3 +1,11 @@
 {
-    "app_title": "认知偏差"
+    "app_title": "认知偏差",
+    "cognitive_bias_type":{
+        "Memory":"记忆",
+        "Social":"社会",
+        "Learning":"学习",
+        "Belief":"信仰",
+        "Money":"金钱",
+        "Politics":"政治"
+    }
 }
